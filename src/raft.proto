@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package raft;
+
+service RaftNode {
+  rpc ServeClient (ServeClientArgs) returns (ServeClientReply) {}
+  rpc AppendEntries (AppendEntriesArgs) returns (AppendEntriesReply) {}
+  rpc RequestVote (RequestVoteArgs) returns (RequestVoteReply) {}
+}
+
+message ServeClientArgs {
+  string request = 1;
+}
+
+message ServeClientReply {
+  string data = 1;
+  string leaderID = 2;
+  bool success = 3;
+}
+
+message AppendEntriesArgs {
+  int32 term = 1;
+  string leaderID = 2;
+  int32 prevLogIndex = 3;
+  int32 prevLogTerm = 4;
+  repeated Entry entries = 5;
+  int32 leaderCommit = 6;
+  float leaseDuration = 7;
+}
+
+message AppendEntriesReply {
+  int32 term = 1;
+  bool success = 2;
+}
+
+message Entry {
+  string operation = 1;
+  string key = 2;
+  string value = 3;
+  int32 term = 4;
+}
+
+message RequestVoteArgs {
+  int32 term = 1;
+  string candidateID = 2;
+  int32 lastLogIndex = 3;
+  int32 lastLogTerm = 4;
+}
+
+message RequestVoteReply {
+  int32 term = 1;
+  bool voteGranted = 2;
+  float oldLeaderLeaseDuration = 3;
+}
