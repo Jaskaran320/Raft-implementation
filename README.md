@@ -31,3 +31,4 @@
 
 ## Acknowledgments
 - Election animation GIF source: [Alexander Brooks's Medium article](https://medium.com/@alexander.jw.brooks/inside-raft-an-algorithm-for-consensus-in-asynchronous-distributed-systems-984f353c3feb)
+- README.md: [Link](https://github.com/adityaahuja7/Raft-Implementation)
